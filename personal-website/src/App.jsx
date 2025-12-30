@@ -69,7 +69,7 @@ function App() {
   };
 
   return (
-    <Router> 
+    <Router basename="/helelelelena"> 
       {/* 
         Layout wraps all pages and receives theme props
         This allows Header to show the theme toggle button
@@ -77,7 +77,6 @@ function App() {
       <Layout theme={theme} toggleTheme={toggleTheme}>
         <Routes>
           {/* Define routes: path → component */}
-          <Route path="/helelelelena" element={<Initial />} />
           <Route path="/" element={<Initial />} />
           <Route path="/about" element={<About />} />
           <Route path="/research" element={<Research />} />
