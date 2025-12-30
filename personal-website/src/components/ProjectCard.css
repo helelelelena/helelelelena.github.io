@@ -1,0 +1,87 @@
+/*
+  ProjectCard Styles
+  
+  Card-based design with hover effects
+*/
+
+.project-card {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-lg);
+  transition: all var(--transition-speed);
+  
+  /* Add subtle shadow */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Hover effect for interactivity */
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  border-color: var(--color-accent);
+}
+
+.project-header {
+  margin-bottom: var(--spacing-sm);
+}
+
+.project-title {
+  color: var(--color-text);
+  font-size: var(--font-size-xl);
+  margin: 0;
+}
+
+.project-description {
+  color: var(--color-text);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-md);
+}
+
+/* Tags styling */
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;  /* Allow tags to wrap to next line */
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-md);
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background-color: var(--color-secondary);
+  color: var(--color-text);
+  border-radius: 16px;  /* Pill shape */
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+}
+
+/* Links styling */
+.project-links {
+  display: flex;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.project-link {
+  color: var(--color-link);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color var(--transition-speed);
+}
+
+.project-link:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .project-card {
+    padding: var(--spacing-md);
+  }
+  
+  .project-title {
+    font-size: var(--font-size-lg);
+  }
+}
