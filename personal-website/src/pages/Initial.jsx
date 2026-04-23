@@ -44,7 +44,9 @@ function Initial() {
         <p className="hero-subtitle">
           applied math & computer science student
           <br />
-          <span className="subtitle-emphasis">earth systems enthusiast 🌎</span>
+          incoming PhD student at CU Boulder ATOC
+          <br />
+          <span className="subtitle-emphasis">earth systems enthusiast</span>
         </p>
       </div>
     </div>

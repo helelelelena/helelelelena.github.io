@@ -20,15 +20,17 @@ function Research() {
 const projects = [
   {
     id: 1,
-    title: "Precipitation Variability in South America",
+    title: "Land Use Change and Climate in the Cerrado",
     description:
-      "Honors thesis research in Brown’s Earth & Environmental Sciences Department. Analyzing global and regional rainfall datasets to study precipitation variability, daily rainfall cycles, and extreme events in tropical regions. Adapted and optimized MATLAB rainfall-processing scripts into Python to improve reproducibility and reduce runtime, and expanded the pipeline to classify convective weather systems.",
+      "Honors thesis in Applied Mathematics-Computer Science, conducted in Brown's Earth & Environmental Sciences Department. Analyzing the relationship between land use and land cover (LULC) change and regional climate trends across the Cerrado, Brazil's biodiversity hotspot. Combines Mapbiomas LULC data, INMET meteorological records, MODIS NDVI, and ERA5 skin surface temperature to assess how agricultural expansion since 2001 has shaped observed temperature and vegetation trends.",
     tags: [
       "Climate Science",
       "Python",
-      "xarray",
-      "NetCDF",
-      "Rainfall Analysis",
+      "Machine Learning",
+      "Land Use Change",
+      "Remote Sensing",
+      "NDVI",
+      "Cerrado",
       "Honors Thesis"
     ],
     links: {
@@ -90,14 +92,20 @@ const projects = [
     links: {}
   }
 ];
-<section className="wip-section">
-  <h2>Work in Progress</h2>
-  <p>
-    Ongoing work includes deep learning approaches for extreme precipitation
-    forecasting, extensions of climate modeling pipelines, and exploratory
-    projects at the intersection of machine learning, Earth systems, and
-    environmental risk.
-  </p>
-</section>
 
+function Research() {
+  return (
+    <section className="wip-section">
+      <h2>Work in Progress</h2>
+      <p>
+        Ongoing work includes deep learning approaches for extreme precipitation
+        forecasting, extensions of climate modeling pipelines, and exploratory
+        projects at the intersection of machine learning, Earth systems, and
+        environmental risk.
+      </p>
+    </section>
+  );
+}
+
+export default Research;
 export { projects };

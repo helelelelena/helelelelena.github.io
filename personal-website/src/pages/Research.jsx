@@ -13,15 +13,18 @@ function Research() {
   const projects = [
     {
       id: 1,
-      title: "Precipitation Variability in South America",
+      title: "Land Use Change and Climate in the Cerrado",
       description:
-        "Honors thesis in Brown's Earth & Environmental Sciences Department analyzing global and regional rainfall datasets to study precipitation variability, daily rainfall cycles, and extreme events in tropical regions. Adapted MATLAB rainfall-processing scripts into Python, improving reproducibility and reducing runtime, while expanding the pipeline to classify convective weather systems.",
+        "Honors thesis in Applied Mathematics-Computer Science, conducted in Brown's Earth & Environmental Sciences Department. Analyzing the relationship between land use and land cover (LULC) change and regional climate trends across the Cerrado, Brazil's biodiversity hotspot. Combines Mapbiomas LULC data, INMET meteorological records, MODIS NDVI, and ERA5 skin surface temperature to assess how agricultural expansion since 2001 has shaped observed temperature and vegetation trends.",
       tags: [
         "Climate Science",
         "Python",
-        "xarray",
-        "NetCDF",
-        "Rainfall Analysis"
+        "Machine Learning",
+        "Land Use Change",
+        "Remote Sensing",
+        "NDVI",
+        "Cerrado",
+        "Honors Thesis"
       ],
       links: {},
       featured: true
@@ -80,6 +83,23 @@ function Research() {
       ],
       links: {
         poster: "https://docs.google.com/presentation/d/1mPv58csaJgK0WDBEiXfnSQoYmqqemDju/edit?usp=sharing&ouid=101129314482559623028&rtpof=true&sd=true"
+      }
+    },
+    {
+      id: 6,
+      title: "Global Precipitation Analysis",
+      description:
+        "Course project for Climate Modeling analyzing global precipitation trends using CMIP6 climate model output. Characterized rainfall intensity distributions across latitudes, revealing the Intertropical Convergence Zone signature, and examined long-term changes under both historical simulations (GISS-E2-1-G, 1850–2014) and the SSP5-8.5 high-emissions scenario (MPI-ESM1-2-LR, 2015–2100). Applied cosine-latitude weighting for global mean precipitation and computed signal-to-noise ratios to quantify trend significance.",
+      tags: [
+        "Climate Science",
+        "Python",
+        "CMIP6",
+        "Precipitation",
+        "NetCDF",
+        "xarray"
+      ],
+      links: {
+        poster: "https://docs.google.com/presentation/d/1SLsMsAAiqD5nZipADC1L9j5Nm8d3XbvC/edit?usp=sharing&ouid=101129314482559623028&rtpof=true&sd=true"
       }
     }
   ];

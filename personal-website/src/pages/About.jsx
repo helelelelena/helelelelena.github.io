@@ -25,6 +25,8 @@ function About() {
             <h1 className="hero-title">hi, i'm helena :)</h1>
             <p className="hero-subtitle">
               applied math & computer science student
+              <br />
+              incoming PhD student at CU Boulder ATOC
             </p>
           </div>
         </div>
@@ -33,25 +35,30 @@ function About() {
       {/* Main content */}
       <section className="about-content">
         <h2>about me</h2>
-        <p>
-          I am an applied mathematics and computer science student at Brown University, 
-          with research interests in climate dynamics, sustainability, and data-driven 
-          approaches to social and environmental problems. I am particularly interested 
-          in how mathematical models and machine learning can be used to better understand 
-          complex Earth systems and their interaction with human institutions.
-        </p>
-        
-        <p>
-          My academic and research experiences span climate data analysis, environmental 
-          governance, and computational modeling, often in interdisciplinary settings. 
-          I am drawn to projects that combine physical intuition with quantitative rigor, 
-          and that aim to produce insights with real-world relevance.
-        </p>
+          <p>
+            I am an applied mathematics and computer science student at Brown University,
+            with research interests in climate dynamics, sustainability, and data-driven
+            approaches to social and environmental problems. I am particularly interested
+            in how mathematical models and machine learning can be used to better understand
+            complex Earth systems and their interaction with human institutions.
+          </p>
 
-        <p>
-          I value collaborative, multicultural research environments and enjoy working at 
-          the boundary between theory, computation, and applied impact.
-        </p>
+          <p>
+            My academic and research experiences span climate data analysis, environmental
+            governance, and computational modeling, often in interdisciplinary settings.
+            I am drawn to projects that combine physical intuition with quantitative rigor,
+            and that aim to produce insights with real-world relevance.
+          </p>
+
+          <p>
+            This fall, I will be joining the Department of Atmospheric and Oceanic Sciences
+            at the University of Colorado Boulder as a PhD student.
+          </p>
+
+          <p>
+            I value collaborative, multicultural research environments and enjoy working at
+            the boundary between theory, computation, and applied impact.
+          </p>
 
         {/* Call to action */}
         <div className="cta-section">
