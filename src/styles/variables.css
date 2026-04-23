@@ -1,0 +1,71 @@
+/* 
+  CSS Variables (Custom Properties)
+  
+  These variables define our color palette and can be used throughout the app.
+  By centralizing colors here, we can easily maintain consistency and 
+  support both light and dark modes.
+  
+  Usage in other CSS files: var(--color-background)
+*/
+
+:root {
+  /* Light Mode Color Palette (default) */
+  --color-background: #F8F5EF;      /* Warm off-white - main background */
+  --color-text: #1F221E;            /* Dark charcoal - primary text */
+  --color-accent: #486C46;          /* Forest green - buttons, highlights */
+  --color-link: #7ABFCC;            /* Sky blue - links, interactive elements */
+  --color-secondary: #ECC77C;       /* Warm gold - tags, secondary accents */
+  
+  /* Semantic Colors (what they represent, not what they are) */
+  --color-primary: var(--color-accent);
+  --color-border: rgba(31, 34, 30, 0.1);  /* Subtle borders using text color */
+  --color-card-bg: #FFFFFF;         /* Card background in light mode */
+  
+  /* Typography Scale */
+  --font-size-base: 16px;
+  --font-size-sm: 0.875rem;         /* 14px */
+  --font-size-lg: 1.125rem;         /* 18px */
+  --font-size-xl: 1.5rem;           /* 24px */
+  --font-size-2xl: 2rem;            /* 32px */
+  --font-size-3xl: 2.5rem;          /* 40px */
+  
+  /* Spacing System (based on 8px grid) */
+  --spacing-xs: 0.5rem;             /* 8px */
+  --spacing-sm: 1rem;               /* 16px */
+  --spacing-md: 1.5rem;             /* 24px */
+  --spacing-lg: 2rem;               /* 32px */
+  --spacing-xl: 3rem;               /* 48px */
+  --spacing-2xl: 4rem;              /* 64px */
+  
+  /* Layout */
+  --max-width: 1200px;              /* Maximum content width */
+  --border-radius: 8px;             /* Standard border radius */
+  --transition-speed: 0.3s;         /* Animation duration */
+}
+/* 
+  Dark Mode Support
+  
+  When [data-theme="dark"] is applied to the root element,
+  these color values override the light mode defaults.
+  
+  How it works:
+  1. User clicks dark mode toggle
+  2. JavaScript adds data-theme="dark" to <html> element
+  3. These CSS variables take effect
+  4. All components using var(--color-*) update automatically!
+*/
+
+[data-theme="dark"] {
+  /* Dark Mode Color Palette */
+  --color-background: #1F221E;      /* Dark charcoal - background */
+  --color-text: #F8F5EF;            /* Warm off-white - text */
+  --color-accent: #7ABFCC;          /* Sky blue - more visible accent in dark */
+  --color-link: #ECC77C;            /* Warm gold - links pop in dark mode */
+  --color-secondary: #486C46;       /* Forest green - muted secondary */
+  
+  /* Adjusted semantic colors for dark mode */
+  --color-primary: var(--color-accent);
+  --color-border: rgba(248, 245, 239, 0.15);  /* Lighter borders for dark bg */
+  --color-card-bg: #2A2D29;         /* Slightly lighter than background */
+}
+

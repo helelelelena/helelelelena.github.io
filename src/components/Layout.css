@@ -1,0 +1,52 @@
+/*
+  Layout Styles
+  
+  These styles create the overall page structure using CSS Flexbox.
+  The layout ensures the footer stays at the bottom even on short pages.
+*/
+
+.layout {
+  /* 
+    Flexbox with column direction creates a vertical layout
+    This is the key to having a sticky footer
+  */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;  /* Full viewport height minimum */
+}
+
+/*
+  Main content area
+  
+  flex: 1 makes this section grow to fill available space,
+  pushing the footer to the bottom
+*/
+.main-content {
+  flex: 1;  /* Grow to fill space */
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;  /* Center the content */
+  padding: var(--spacing-xl) var(--spacing-md);
+}
+
+/* 
+  Full-screen content (for landing pages like Initial)
+  Removes padding and max-width to allow full viewport centering
+*/
+.main-content-fullscreen {
+  flex: 1;
+  width: 100%;
+  max-width: none;  /* No max width restriction */
+  margin: 0;
+  padding: 0;  /* No padding - page handles its own spacing */
+}
+
+/* 
+  Responsive padding adjustments
+  Smaller padding on mobile devices
+*/
+@media (max-width: 768px) {
+  .main-content {
+    padding: var(--spacing-lg) var(--spacing-sm);
+  }
+}

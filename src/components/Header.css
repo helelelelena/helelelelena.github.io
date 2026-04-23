@@ -1,0 +1,107 @@
+/*
+  Header Styles
+  
+  Styling for the navigation header with a clean, minimal design
+*/
+
+.header {
+  /* Position fixed keeps the header at the top when scrolling */
+  position: sticky;
+  top: 0;
+  /* High z-index ensures header stays above other content */
+  z-index: 100;
+  
+  background-color: var(--color-background);
+  border-bottom: 1px solid var(--color-border);
+  
+  /* Add subtle backdrop blur for modern look (optional) */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.header-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--spacing-sm) var(--spacing-md);
+  
+  /* Flexbox for horizontal layout */
+  display: flex;
+  justify-content: space-between;  /* Brand on left, nav+toggle on right */
+  align-items: center;             /* Vertically center items */
+  gap: var(--spacing-md);
+}
+
+/* Site branding/logo area */
+.header-brand {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+}
+
+.brand-link {
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color var(--transition-speed);
+}
+
+.brand-link:hover {
+  color: var(--color-accent);
+}
+
+/* Right side container: nav + theme toggle */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+/* Navigation list */
+.nav-list {
+  display: flex;
+  gap: var(--spacing-md);
+  align-items: center;
+}
+
+/* Navigation links */
+.nav-link {
+  color: var(--color-text);
+  text-decoration: none;
+  padding: var(--spacing-xs);
+  border-radius: 4px;
+  transition: all var(--transition-speed);
+  font-weight: 500;
+}
+
+.nav-link:hover {
+  color: var(--color-link);
+  text-decoration: none;
+  background-color: rgba(122, 191, 204, 0.1);  /* Subtle background on hover */
+}
+
+/* 
+  Active link styling
+  This is automatically applied by NavLink to the current page
+*/
+.nav-link.active {
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+/* 
+  Responsive Design: Mobile
+  
+  On smaller screens, we might want to adjust the layout
+  For now, this is a simple responsive adjustment
+*/
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm);
+  }
+  
+  .nav-list {
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
