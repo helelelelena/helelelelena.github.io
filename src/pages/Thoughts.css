@@ -1,7 +1,7 @@
 .thoughts-page {
   --thoughts-font: 'Avenir Next', 'Segoe UI', 'Helvetica Neue', sans-serif;
-  --word-pulse-min: 0.93;
-  --word-pulse-max: 1.07;
+  --word-pulse-min: 1;
+  --word-pulse-max: 5.5;
   position: relative;
   min-height: calc(100vh - 116px);
   overflow: hidden;
@@ -157,7 +157,7 @@
   letter-spacing: 0.015em;
   text-transform: lowercase;
   opacity: 0.94;
-  transform: translate(0, 0);
+  transform: translate(var(--word-x, 0), var(--word-y, 0));
   animation: none;
   transition: transform 0.22s ease, opacity 0.22s ease, color 0.22s ease;
   will-change: transform;
@@ -181,7 +181,7 @@
 
 .floating-word:hover {
   opacity: 1;
-  transform: translateY(-5px) scale(1.12);
+  transform: translate(var(--word-x, 0), calc(var(--word-y, 0) - 5px));
 }
 
 .word-variant-0 {

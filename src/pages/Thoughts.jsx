@@ -261,13 +261,13 @@ function Thoughts() {
   const floatingWords = useMemo(
     () =>
       words.map((word, index) => {
-        const baseMin = 0.96;
-        const baseMax = 1.74;
+        const baseMin = 0.2;
+        const baseMax = 0.34;
         const fontSize = baseMin + Math.random() * (baseMax - baseMin);
         const variant = index % 4;
-        const pulseDuration = 4.8 + (index % 9) * 0.75;
-        const pulseDelay = -((index * 0.65) % 7);
-        const moveSpeedMultiplier = 0.72 + (((index * 11) % 14) / 13) * 0.72;
+        const pulseDuration = 4.0 + Math.random() * 4.0;
+        const pulseDelay = 0;
+        const moveSpeedMultiplier = 0.45 + (((index * 11) % 14) / 13) * 0.45;
 
         return {
           ...word,
@@ -332,12 +332,12 @@ function Thoughts() {
         const width = (element?.offsetWidth || 64) * WORD_COLLISION_SCALE_BUFFER;
         const height = (element?.offsetHeight || 20) * WORD_COLLISION_SCALE_BUFFER;
         const directionalBounds = getDirectionalBounds(bounds, width, height);
-        const spanX = Math.max(directionalBounds.maxX - directionalBounds.minX, 0);
-        const spanY = Math.max(directionalBounds.maxY - directionalBounds.minY, 0);
-        const x = directionalBounds.minX + (((index * 47) % 100) / 100) * spanX;
-        const y = directionalBounds.minY + (((index * 61) % 100) / 100) * spanY;
-        const angle = ((index * 37) % 360) * (Math.PI / 180);
-        const baseSpeed = (28 + ((index * 19) % 52)) * (word.moveSpeedMultiplier || 1);
+        const centerX = directionalBounds.minX + (directionalBounds.maxX - directionalBounds.minX) / 2;
+        const centerY = directionalBounds.minY + (directionalBounds.maxY - directionalBounds.minY) / 2;
+        const x = centerX;
+        const y = centerY;
+        const angle = Math.random() * Math.PI * 2;
+        const baseSpeed = (22 + Math.random() * 58) * (word.moveSpeedMultiplier || 1);
 
         return {
           id: word.id,
@@ -360,7 +360,8 @@ function Thoughts() {
       particlesRef.current.forEach((particle, index) => {
         const element = wordRefs.current[index];
         if (element) {
-          element.style.transform = `translate(${particle.x}px, ${particle.y}px)`;
+          element.style.setProperty('--word-x', `${particle.x}px`);
+          element.style.setProperty('--word-y', `${particle.y}px`);
         }
       });
     };
@@ -502,7 +503,8 @@ function Thoughts() {
           });
         }
 
-        element.style.transform = `translate(${particle.x}px, ${particle.y}px)`;
+        element.style.setProperty('--word-x', `${particle.x}px`);
+        element.style.setProperty('--word-y', `${particle.y}px`);
       });
 
       rafRef.current = requestAnimationFrame(animate);
