@@ -48,11 +48,12 @@ export const thoughtPieces = [
     type: 'internal',
     title: 'Weather Notebook',
     sourceText:
-      'I kept a weather notebook while walking to class and started noticing rhythm, pressure, cloud texture, and tiny shifts in temperature that changed my mood.',
+      'I kept a weather notebook while walking to class, noticing rhythm, pressure, and a kind of atmospheric drift—cloud texture, faint gradients, small shifts in temperature that felt like they moved through me.',
     body: [
-      'I started carrying a small notebook for weather notes during my morning walk.',
-      'At first I only wrote temperature and wind direction, but over time I focused on pattern and transition.',
-      'Writing these small observations made forecasting feel less abstract and more personal.'
+      'I started carrying a small notebook for weather notes during my morning walk, mostly to catch what was already fading.',
+      'At first I wrote temperature and wind direction, but slowly it became about pattern, transition, and the quiet weight of the air.',
+      'Some mornings felt identical on paper but different in my body, like a subtle shift in pressure or light.',
+      'Forecasting stopped feeling distant and became something closer, almost a form of listening.'
     ]
   },
   {
@@ -60,11 +61,12 @@ export const thoughtPieces = [
     type: 'internal',
     title: 'Quiet Equations',
     sourceText:
-      'Some equations feel loud and performative, but others are quiet and patient; they reveal structure slowly when you revisit them on different days.',
+      'Some equations feel loud, but others stay quiet—holding structure beneath the surface, revealing themselves slowly, almost reluctantly, each time you return.',
     body: [
-      'I like equations that do not reveal everything immediately.',
-      'Returning to the same proof after a week often changes how I interpret each line.',
-      'The pace of understanding can be part of the beauty.'
+      'I am drawn to equations that do not resolve immediately, that hold something back.',
+      'Returning after a few days, a line feels different, as if something has shifted—not the equation, maybe just me.',
+      'Understanding arrives unevenly, in fragments, like a slow drift rather than a clear step.',
+      'There is a kind of stillness in not knowing yet.'
     ]
   },
   {
@@ -72,11 +74,12 @@ export const thoughtPieces = [
     type: 'internal',
     title: 'Field Notes on Light',
     sourceText:
-      'Light near sunset has a strange geometry in city streets, bouncing off glass, concrete, and leaves to create short moments that disappear almost instantly.',
+      'Light near dusk reshapes the city for a moment—soft reflections, shifting angles, surfaces catching and releasing glow before everything settles back.',
     body: [
-      'My camera taught me to look at light as an event rather than a constant.',
-      'Cloud edges and reflective windows can create temporary maps across sidewalks.',
-      'I write quickly in these moments because the scene changes in seconds.'
+      'My camera made me notice light as something temporary, almost weightless.',
+      'Glass, leaves, and concrete scatter it into brief patterns across sidewalks.',
+      'These moments feel like they exist on the edge of disappearing.',
+      'I try to write quickly, but what remains is only a trace.'
     ]
   },
   {
@@ -84,11 +87,12 @@ export const thoughtPieces = [
     type: 'internal',
     title: 'Learning to Listen',
     sourceText:
-      'Research meetings taught me that listening is a technical skill, not just a social one, because good questions depend on attention and restraint.',
+      'Listening is slower than speaking; in that delay, something opens—a space where meaning gathers if you do not interrupt it too soon.',
     body: [
-      'I used to prepare too many questions before meetings.',
-      'Now I write fewer prompts and spend more effort on listening for uncertainty.',
-      'The best follow-up question is usually the one that opens a path, not the one that closes a debate.'
+      'I used to prepare too many questions, filling every silence.',
+      'Now I leave more space, letting things linger a little longer.',
+      'Uncertainty is easier to notice when you are not trying to resolve it immediately.',
+      'The best questions feel like openings, not conclusions.'
     ]
   },
   {
@@ -97,8 +101,7 @@ export const thoughtPieces = [
     title: 'Atmosphere and Memory',
     url: 'https://example.com/writing/atmosphere-and-memory',
     sourceText:
-      'Atmosphere can hold memory in subtle ways: smell after rain, distant traffic, cold railings, and the changing color of the sky at dusk.',
-    body: []
+      'Atmosphere holds memory in quiet ways—after rain, in the air’s softness, in distant sounds, in the slow fading of light at dusk.'
   },
   {
     slug: 'placeholder-essay-systems',
@@ -106,8 +109,7 @@ export const thoughtPieces = [
     title: 'Small Systems',
     url: 'https://example.com/writing/small-systems',
     sourceText:
-      'Small systems are easier to understand when you watch them long enough, especially when feedback loops become visible in ordinary routines.',
-    body: []
+      'Small systems reveal themselves slowly; patterns emerge through repetition, through drift and return, until the structure becomes visible.'
   },
   {
     slug: 'placeholder-essay-maps',
@@ -115,8 +117,7 @@ export const thoughtPieces = [
     title: 'Unfinished Maps',
     url: 'https://example.com/writing/unfinished-maps',
     sourceText:
-      'Maps are promises as much as they are tools, and unfinished maps remind us that certainty is always temporary.',
-    body: []
+      'Maps feel like promises, but unfinished ones hold something softer—an openness, a boundary not yet fixed, a space still becoming.'
   },
   {
     slug: 'placeholder-essay-noise',
@@ -124,8 +125,7 @@ export const thoughtPieces = [
     title: 'Noise Floor',
     url: 'https://example.com/writing/noise-floor',
     sourceText:
-      'I keep thinking about the noise floor in data and conversation, and how much meaning hides below what we first notice.',
-    body: []
+      'There is always a layer beneath what we notice—a kind of quiet noise, where meaning lingers before it fully appears.'
   }
 ];
 
