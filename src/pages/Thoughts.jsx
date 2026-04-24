@@ -170,7 +170,6 @@ function ejectFromZoneWithinBounds(particle, zone) {
 }
 
 function Thoughts() {
-  const [motionMode, setMotionMode] = useState('wild');
   const [selectedNote, setSelectedNote] = useState(null);
   const [csvWords, setCsvWords] = useState([]);
   const [viewScale, setViewScale] = useState(1);
@@ -182,12 +181,7 @@ function Thoughts() {
   const particlesRef = useRef([]);
   const rafRef = useRef(null);
   const lastFrameRef = useRef(0);
-  const modeRef = useRef(motionMode);
   const viewRef = useRef({ scale: 1, x: 0, y: 0 });
-
-  useEffect(() => {
-    modeRef.current = motionMode;
-  }, [motionMode]);
 
   useEffect(() => {
     if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
@@ -499,7 +493,6 @@ function Thoughts() {
 
       const delta = Math.min((timestamp - lastFrameRef.current) / 1000, 0.045);
       lastFrameRef.current = timestamp;
-      const modeMultiplier = modeRef.current === 'wild' ? 1 : 0.48;
       const particles = particlesRef.current;
       const containerRect = container.getBoundingClientRect();
       const noFlyZones = [];
@@ -585,8 +578,8 @@ function Thoughts() {
           particle.vy *= factor;
         }
 
-        particle.x += particle.vx * delta * modeMultiplier;
-        particle.y += particle.vy * delta * modeMultiplier;
+        particle.x += particle.vx * delta;
+        particle.y += particle.vy * delta;
 
         if (particle.x <= particle.minX) {
           particle.x = particle.minX;
@@ -671,14 +664,6 @@ function Thoughts() {
         <h1>thoughts</h1>
         <p>a moving index of my thoughts</p>
       </header>
-
-      <button
-        type="button"
-        className="motion-toggle"
-        onClick={() => setMotionMode(prev => (prev === 'wild' ? 'calm' : 'wild'))}
-      >
-        motion: {motionMode}
-      </button>
 
       <div className="thoughts-note-wrap" ref={noteRef}>
         <p className="thoughts-note">take a look into my brain</p>
