@@ -57,8 +57,11 @@ function slugify(value) {
     .replace(/-+/g, '-');
 }
 
-const CSV_ONLY_MIN_LINES = 20;
+const CSV_ONLY_MIN_LINES = 30;
 const WORD_COLLISION_SCALE_BUFFER = 1.12;
+const COLLISION_HEAVY_THRESHOLD = 120;
+const MOBILE_WORD_COUNT = 56;
+const DESKTOP_WORD_COUNT = 90;
 
 function getPostItSize(note) {
   const bodyText = note?.body?.[0] && note.body[0] !== note.sourceText ? note.body[0] : '';
@@ -170,6 +173,8 @@ function Thoughts() {
   const [motionMode, setMotionMode] = useState('wild');
   const [selectedNote, setSelectedNote] = useState(null);
   const [csvWords, setCsvWords] = useState([]);
+  const [viewScale, setViewScale] = useState(1);
+  const [isCoarsePointer, setIsCoarsePointer] = useState(false);
   const containerRef = useRef(null);
   const introRef = useRef(null);
   const noteRef = useRef(null);
@@ -178,10 +183,126 @@ function Thoughts() {
   const rafRef = useRef(null);
   const lastFrameRef = useRef(0);
   const modeRef = useRef(motionMode);
+  const viewRef = useRef({ scale: 1, x: 0, y: 0 });
 
   useEffect(() => {
     modeRef.current = motionMode;
   }, [motionMode]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
+      return undefined;
+    }
+
+    const mediaQuery = window.matchMedia('(pointer: coarse)');
+    const apply = event => {
+      setIsCoarsePointer(event.matches);
+    };
+
+    setIsCoarsePointer(mediaQuery.matches);
+    mediaQuery.addEventListener('change', apply);
+
+    return () => {
+      mediaQuery.removeEventListener('change', apply);
+    };
+  }, []);
+
+  const targetWordCount = isCoarsePointer ? MOBILE_WORD_COUNT : DESKTOP_WORD_COUNT;
+
+  const clampViewTransform = (scale, x, y, width, height) => {
+    const scaledWidth = width * scale;
+    const scaledHeight = height * scale;
+
+    let minX;
+    let maxX;
+    let minY;
+    let maxY;
+
+    if (scale >= 1) {
+      minX = width - scaledWidth;
+      maxX = 0;
+      minY = height - scaledHeight;
+      maxY = 0;
+    } else {
+      const centeredX = (width - scaledWidth) / 2;
+      const centeredY = (height - scaledHeight) / 2;
+      minX = centeredX;
+      maxX = centeredX;
+      minY = centeredY;
+      maxY = centeredY;
+    }
+
+    return {
+      x: Math.min(maxX, Math.max(minX, x)),
+      y: Math.min(maxY, Math.max(minY, y))
+    };
+  };
+
+  const handleCloudWheel = event => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    if (isCoarsePointer) {
+      return;
+    }
+
+    const container = containerRef.current;
+    if (!container) {
+      return;
+    }
+
+    const rect = container.getBoundingClientRect();
+    const cursorX = event.clientX - rect.left;
+    const cursorY = event.clientY - rect.top;
+
+    const current = viewRef.current;
+    const sensitivity = event.ctrlKey ? 0.0035 : 0.0018;
+    const zoomFactor = Math.exp(-event.deltaY * sensitivity);
+    const nextScale = Math.min(3.2, Math.max(0.75, current.scale * zoomFactor));
+
+    const worldX = (cursorX - current.x) / current.scale;
+    const worldY = (cursorY - current.y) / current.scale;
+    const nextX = cursorX - worldX * nextScale;
+    const nextY = cursorY - worldY * nextScale;
+    const clamped = clampViewTransform(nextScale, nextX, nextY, rect.width, rect.height);
+
+    viewRef.current = {
+      scale: nextScale,
+      x: clamped.x,
+      y: clamped.y
+    };
+    setViewScale(nextScale);
+  };
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) {
+      return undefined;
+    }
+
+    const onNativeWheel = event => {
+      handleCloudWheel(event);
+    };
+
+    const blockGesture = event => {
+      event.preventDefault();
+      event.stopPropagation();
+    };
+
+    if (!isCoarsePointer) {
+      container.addEventListener('wheel', onNativeWheel, { passive: false });
+      container.addEventListener('gesturestart', blockGesture, { passive: false });
+      container.addEventListener('gesturechange', blockGesture, { passive: false });
+      container.addEventListener('gestureend', blockGesture, { passive: false });
+    }
+
+    return () => {
+      container.removeEventListener('wheel', onNativeWheel);
+      container.removeEventListener('gesturestart', blockGesture);
+      container.removeEventListener('gesturechange', blockGesture);
+      container.removeEventListener('gestureend', blockGesture);
+    };
+  }, [isCoarsePointer]);
 
   useEffect(() => {
     let isMounted = true;
@@ -238,13 +359,16 @@ function Thoughts() {
   }, []);
 
   const words = useMemo(() => {
-    const baseWords = buildFloatingWords(40);
+    const baseWords = buildFloatingWords(120);
+
     if (csvWords.length === 0) {
-      return baseWords.map(word => ({ ...word, openMode: 'none' }));
+      return baseWords.slice(0, targetWordCount).map(word => ({ ...word, openMode: 'none' }));
     }
 
     if (csvWords.length >= CSV_ONLY_MIN_LINES) {
-      return csvWords.slice(0, 90);
+      if (csvWords.length >= targetWordCount) {
+        return csvWords.slice(0, targetWordCount);
+      }
     }
 
     const csvLabels = new Set(csvWords.map(word => word.label.toLowerCase()));
@@ -255,8 +379,8 @@ function Thoughts() {
         .map(word => ({ ...word, openMode: 'none' }))
     ];
 
-    return merged.slice(0, 90);
-  }, [csvWords]);
+    return merged.slice(0, targetWordCount);
+  }, [csvWords, targetWordCount]);
 
   const floatingWords = useMemo(
     () =>
@@ -401,21 +525,26 @@ function Thoughts() {
       }
 
       // Soft collision avoidance: nearby words repel each other to reduce overlap.
+      // Throttle pair checks when density is high to keep zoom-out smooth.
+      const denseMode = particles.length > COLLISION_HEAVY_THRESHOLD;
+      const collisionStride = denseMode ? 2 : 1;
+      const minDist = denseMode ? 46 : 54;
+      const collisionPush = denseMode ? 18 : 34;
+
       for (let i = 0; i < particles.length; i += 1) {
         const a = particles[i];
-        for (let j = i + 1; j < particles.length; j += 1) {
+        for (let j = i + 1; j < particles.length; j += collisionStride) {
           const b = particles[j];
           const dx = b.x - a.x;
           const dy = b.y - a.y;
           const distSq = dx * dx + dy * dy;
-          const minDist = 54;
 
           if (distSq > 0 && distSq < minDist * minDist) {
             const dist = Math.sqrt(distSq);
             const nx = dx / dist;
             const ny = dy / dist;
             const overlap = (minDist - dist) / minDist;
-            const push = overlap * 34;
+            const push = overlap * collisionPush;
 
             a.vx -= nx * push;
             a.vy -= ny * push;
@@ -551,10 +680,27 @@ function Thoughts() {
         motion: {motionMode}
       </button>
 
-      <p className="thoughts-note" ref={noteRef}>take a look into my brain</p>
+      <div className="thoughts-note-wrap" ref={noteRef}>
+        <p className="thoughts-note">take a look into my brain</p>
+        <div className="thoughts-note-message" aria-hidden="true">
+          how do your thoughts organize themselves in your head? email me!
+        </div>
+      </div>
 
-      <div className="thought-cloud" aria-label="Floating thought words" ref={containerRef}>
-        {floatingWords.map((word, index) => {
+      <div
+        className="thought-cloud"
+        aria-label="Floating thought words"
+        ref={containerRef}
+      >
+        <div
+          className="thought-cloud-canvas"
+          style={{
+            '--view-x': `${viewRef.current.x}px`,
+            '--view-y': `${viewRef.current.y}px`,
+            '--view-scale': viewScale
+          }}
+        >
+          {floatingWords.map((word, index) => {
           if (word.openMode === 'post-it') {
             return (
               <button
@@ -612,7 +758,8 @@ function Thoughts() {
               </span>
             </span>
           );
-        })}
+          })}
+        </div>
       </div>
 
       {selectedNote && (
