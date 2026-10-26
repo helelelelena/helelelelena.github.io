@@ -40,11 +40,13 @@ function About() {
             With a background in applied mathematics and computer science from Brown University, I am interested 
             in using mathematical modeling, computational methods, and machine learning to better understand 
             climate dynamics and their interactions with human systems.
-
+          </p>
+          <p>
             During my time at Brown, my academic and research experiences spanned climate data analysis, 
             environmental governance, and computational modeling, often in interdisciplinary settings. 
             I am currently a member of the CHAOS & Predictability Research Group, led by Dr. Aneesh Subramanian.
-
+          </p>
+          <p>
             I value collaborative, multicultural research environments and enjoy working at the intersection of 
             mathematical theory, computational methods, and real-world applications.
           </p>
