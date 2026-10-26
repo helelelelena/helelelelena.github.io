@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecting...</title>
+    <script>
+      // GitHub Pages has no server-side rewrite for React Router routes.
+      // Send the requested path to index.html, where main.jsx restores it.
+      const requestedPath =
+        window.location.pathname +
+        window.location.search +
+        window.location.hash;
+      window.location.replace(
+        '/?redirect=' + encodeURIComponent(requestedPath)
+      );
+    </script>
+  </head>
+  <body>
+    <p>Redirecting...</p>
+  </body>
+</html>
