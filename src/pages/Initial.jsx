@@ -42,9 +42,9 @@ function Initial() {
         </h1>
         <p className="hero-extra">(pronounced eˈlenɐ)</p>
         <p className="hero-subtitle">
-          applied math & computer science student
+          PhD student at CU Boulder ATOC
           <br />
-          incoming PhD student at CU Boulder ATOC
+          applied math & computer science
           <br />
           <span className="subtitle-emphasis">earth systems enthusiast</span>
         </p>
