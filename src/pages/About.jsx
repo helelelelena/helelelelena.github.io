@@ -36,28 +36,17 @@ function About() {
       <section className="about-content">
         <h2>about me</h2>
           <p>
-            I am an applied mathematics and computer science student at Brown University,
-            with research interests in climate dynamics, sustainability, and data-driven
-            approaches to social and environmental problems. I am particularly interested
-            in how mathematical models and machine learning can be used to better understand
-            complex Earth systems and their interaction with human institutions.
-          </p>
+            I am a first-year PhD student in Atmospheric and Oceanic Sciences at the University of Colorado Boulder. 
+            With a background in applied mathematics and computer science from Brown University, I am interested 
+            in using mathematical modeling, computational methods, and machine learning to better understand 
+            climate dynamics and their interactions with human systems.
 
-          <p>
-            My academic and research experiences span climate data analysis, environmental
-            governance, and computational modeling, often in interdisciplinary settings.
-            I am drawn to projects that combine physical intuition with quantitative rigor,
-            and that aim to produce insights with real-world relevance.
-          </p>
+            During my time at Brown, my academic and research experiences spanned climate data analysis, 
+            environmental governance, and computational modeling, often in interdisciplinary settings. 
+            I am currently a member of the CHAOS & Predictability Research Group, led by Dr. Aneesh Subramanian.
 
-          <p>
-            This fall, I will be joining the Department of Atmospheric and Oceanic Sciences
-            at the University of Colorado Boulder as a PhD student.
-          </p>
-
-          <p>
-            I value collaborative, multicultural research environments and enjoy working at
-            the boundary between theory, computation, and applied impact.
+            I value collaborative, multicultural research environments and enjoy working at the intersection of 
+            mathematical theory, computational methods, and real-world applications.
           </p>
 
         {/* Call to action */}
