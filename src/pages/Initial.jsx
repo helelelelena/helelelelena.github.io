@@ -46,7 +46,7 @@ function Initial() {
           <br />
           applied math & computer science
           <br />
-          <span className="subtitle-emphasis">earth systems enthusiast</span>
+          <span className="subtitle-emphasis">earth systemsp enthusiast</span>
         </p>
       </div>
     </div>
